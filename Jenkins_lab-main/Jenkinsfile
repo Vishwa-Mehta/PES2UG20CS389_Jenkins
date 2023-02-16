@@ -1,0 +1,29 @@
+pipeline {
+	agent any
+	stages {
+		stage('Build') {
+			steps {
+				echo 'Building...'
+				sh 'g++ -o PES2UG20CS389-1 ./task5.cpp'
+				echo 'Building successful'
+			}
+	 	}
+		stage('Test') {
+			steps {
+				echo 'Testing...'
+				sh './PES2UG20CS389-1'
+				echo 'Testing successful'
+			}
+		}
+		stage('Deploy') {
+			steps {
+				echo 'Deploy successful'
+			}
+		}
+	}
+	post {
+		failure {
+		 	echo 'Pipeline failed'
+		 }
+	}
+}
